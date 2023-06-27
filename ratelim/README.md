@@ -24,3 +24,9 @@ $ ratelimc
 8   200 OK
 2   429 Too Many Requests
 ```
+
+More
+
+- https://gobyexample.com/rate-limiting
+- https://www.alexedwards.net/blog/how-to-rate-limit-http-requests
+- [counting semaphore](https://github.com/adonovan/gopl.io/blob/master/ch8/crawl2/findlinks.go)
