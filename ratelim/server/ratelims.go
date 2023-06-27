@@ -28,7 +28,7 @@ import (
 
 var (
 	r = flag.Float64("r", 10, "requests rate")
-	t = flag.Duration("t", time.Second, "time interval")
+	t = flag.Duration("t", time.Second, "requests rate time interval")
 	b = flag.Int("b", 10, "burst size")
 )
 
