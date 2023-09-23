@@ -1,4 +1,4 @@
-Tls-socket demonstrates how TLS works at socket (or TCP) layer.
+Tls-tcp demonstrates how TLS works at TCP (or socket) layer.
 
 ```
 mkcert localhost # https://github.com/FiloSottile/mkcert

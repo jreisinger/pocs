@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jreisinger/go-tls/utils"
+	"tls-http/utils"
 )
 
 func main() {
