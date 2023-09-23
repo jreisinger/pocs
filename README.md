@@ -1,1 +1,1 @@
-POCs contains various Proof Of Concepts.
+POCs contains various proof of concepts and reinventions of the wheel.
