@@ -44,6 +44,16 @@ func protectedMessage(c *gin.Context) {
 		return
 	}
 
+	sub, err := token.Claims.GetSubject()
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, responseJSON{Message: err.Error()})
+		return
+	}
+	if sub != "Aquinas" {
+		c.IndentedJSON(http.StatusUnauthorized, responseJSON{Message: "sub claim in payload is not Aquinas"})
+		return
+	}
+
 	message := "the man's ultimate happiness consists in the contemplation of truth"
 	c.IndentedJSON(http.StatusOK, responseJSON{Message: message})
 }

@@ -36,7 +36,11 @@ curl -v http://localhost:8080/protected
 # Using token from https://jwt.io with modified secret key.
 curl -v http://localhost:8080/protected -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.sxWNNhU7H0EtNNpwycvDktMxqtLJjR4mHHLwuym0wRs' #gitleaks:allow
 
-# 200: correct token
+# 401: incorrect "sub" claim in the payload
 # Using token from https://jwt.io.
 curl -v http://localhost:8080/protected -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c' #gitleaks:allow
+
+# 200: correct "sub" claim in the payload
+# Using token from https://jwt.io with "sub": "Aquinas"
+curl -v http://localhost:8080/protected -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBcXVpbmFzIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.0_Uqs7hhTP7P_4uTfqQ1AEBvd0cfiRnTEQF2rhtv5aE' #gitleaks:allow
 ```
