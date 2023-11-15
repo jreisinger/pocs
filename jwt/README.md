@@ -9,7 +9,7 @@ Although JWTs can be encrypted, this is about signing, i.e. verifying the integr
 
 JWT structure:
 
-* header - Base64Url-encoded token type (JWT) and signing algorithm (HMAC, SHA256, RSA)
+* header - contains Base64Url-encoded token type (JWT) and signing algorithm (HMAC, SHA256, RSA)
 * payload - contains Base64Url-encoded claims, i.e. statements about an entity ([registered](https://tools.ietf.org/html/rfc7519#section-4.1), public, private)
 * signature - created by signing encoded header and payload, e.g. using HMAC algorithm and a secret:
 
@@ -31,9 +31,6 @@ Play
 ```
 # 400: no token in Authorization header
 curl -v http://localhost:8080/protected
-
-# 400: invalid token in Authorization header
-curl -v http://localhost:8080/protected -H "Authorization: foo"
 
 # 400: token signed with different key than the one defined in `Key` variable
 # Using token from https://jwt.io with modified secret key.
