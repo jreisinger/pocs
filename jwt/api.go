@@ -49,8 +49,8 @@ func protectedMessage(c *gin.Context) {
 		c.IndentedJSON(http.StatusBadRequest, responseJSON{Message: err.Error()})
 		return
 	}
-	if sub != "Aquinas" {
-		c.IndentedJSON(http.StatusUnauthorized, responseJSON{Message: "sub claim in payload is not Aquinas"})
+	if sub != "philosopher" {
+		c.IndentedJSON(http.StatusUnauthorized, responseJSON{Message: "sub claim in payload is not philosopher"})
 		return
 	}
 
