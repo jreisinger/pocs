@@ -1,0 +1,12 @@
+go 1.21.5
+
+use (
+	./distroless
+	./download
+	./jwt
+	./lookup
+	./ratelim
+	./shannon
+	./tls-http
+	./unsafehash
+)
