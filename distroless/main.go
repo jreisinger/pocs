@@ -3,18 +3,19 @@ package main
 import (
 	"fmt"
 	"log"
-	"os/user"
+	"net/http"
+)
+
+const (
+	port = "8080"
+	msg  = `Do not meddle in the affairs of wizards,
+for you are crunchy and good with ketchup.`
 )
 
 func main() {
-	user, err := user.Current()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("UID:", user.Uid)
-	fmt.Println("GID:", user.Gid)
-	fmt.Println("Username:", user.Username)
-	fmt.Println("Name:", user.Name)
-	fmt.Println("HomeDir:", user.HomeDir)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, msg)
+	})
+	log.Println("starting a web server on port " + port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
