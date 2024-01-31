@@ -1,4 +1,4 @@
-K8s-work-queue shows how to use Kubernetes jobs to process a work queue.
+Work-queue shows how to use Kubernetes jobs to process a work queue.
 
 ```
 producer ---> [ work queue ] ---> consumer
