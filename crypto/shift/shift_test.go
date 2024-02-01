@@ -68,3 +68,28 @@ func TestDecipher(t *testing.T) {
 		})
 	}
 }
+
+func TestCrack(t *testing.T) {
+	t.Parallel()
+	for _, tc := range cases {
+		name := fmt.Sprintf("%s + %d = %s", tc.plaintext, tc.key, tc.ciphertext)
+		t.Run(name, func(t *testing.T) {
+			crib := tc.plaintext[:3]
+			got, err := shift.Crack(tc.ciphertext, crib)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if tc.key != got {
+				t.Errorf("want %q, got %q", tc.key, got)
+			}
+		})
+	}
+}
+
+func TestCrackReturnsErrorWhenKeyNotFound(t *testing.T) {
+	t.Parallel()
+	_, err := shift.Crack([]byte("no good"), []byte("bogus"))
+	if err == nil {
+		t.Errorf("want error when key not found, got nil")
+	}
+}
