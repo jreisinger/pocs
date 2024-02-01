@@ -2,12 +2,12 @@ go 1.21.6
 
 use (
 	./crypto/shift
-	./distroless
-	./download
-	./jwt
+	./crypto/tls-http
+	./crypto/unsafehash
+	./k8s/distroless
 	./lookup
 	./ratelim
 	./shannon
-	./tls-http
-	./unsafehash
+	./web/download
+	./web/jwt
 )
