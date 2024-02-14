@@ -5,6 +5,7 @@ use (
 	./crypto/shift-multibytekey
 	./crypto/tls-http
 	./crypto/unsafehash
+	./go/logging
 	./k8s/distroless
 	./lookup
 	./ratelim
