@@ -1,4 +1,7 @@
+Simple shift (Caesar) cipher. Taken from https://github.com/bitfield/eg-crypto/.
+
 ```
+echo hello world | go run ./cmd/encipher -key 10 | go run ./cmd/decipher -key 10
 echo hello world | go run ./cmd/encipher -key 10 | go run ./cmd/crack -crib hell
 
 go run ./cmd/encipher -key 253 < ./testdata/tiger.txt > ./testdata/tiger.bin
