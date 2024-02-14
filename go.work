@@ -11,4 +11,5 @@ use (
 	./shannon
 	./web/download
 	./web/jwt
+	./web/restful-api-example
 )
