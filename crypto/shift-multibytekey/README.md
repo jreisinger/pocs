@@ -2,6 +2,8 @@ Simple shift (Caesar) cipher that supports multibyte encryption keys (`shift` su
 
 ```
 echo hello | go run ./cmd/encipher -key DEADBEEF | go run ./cmd/decipher -key DEADBEEF
+
+# NOTE: the crib must be at least as long as the key; it this case 4 bytes, i.e. 'The '
 go run ./cmd/encipher -key DEADBEEF < ../shift/testdata/tiger.txt | go run ./cmd/crack -crib 'The tiger'
 ```
 
