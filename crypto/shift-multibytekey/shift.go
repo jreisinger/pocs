@@ -32,13 +32,13 @@ const MaxKeyLen = 32 // bytes
 func Crack(ciphertext, crib []byte) (key []byte, err error) {
 	for k := range min(MaxKeyLen, len(ciphertext)) {
 		for guess := range 256 {
-			result := ciphertext[k] - byte(guess)
-			if result == crib[k] {
+			plaintext := Decipher([]byte{ciphertext[k]}, []byte{byte(guess)})
+			if plaintext[0] == crib[k] {
 				key = append(key, byte(guess))
 				break
 			}
 		}
-		if bytes.Equal(crib, Decipher(ciphertext[:len(crib)], key)) {
+		if bytes.Equal(Decipher(ciphertext[:len(crib)], key), crib) {
 			return key, nil
 		}
 	}
