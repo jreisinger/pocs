@@ -1,9 +1,8 @@
-go 1.22
-
-toolchain go1.22.0
+go 1.22.0
 
 use (
 	./crypto/shift
+	./crypto/shift-block
 	./crypto/shift-multibytekey
 	./crypto/tls-http
 	./crypto/unsafehash
