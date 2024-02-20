@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"shiftblock"
+	shift "shift-block"
 	"testing"
 )
 
 func TestNewCipher_GivesNoErrorForValidKey(t *testing.T) {
 	t.Parallel()
-	_, err := shiftblock.NewCipher(make([]byte, shiftblock.BlockSize))
+	_, err := shift.NewCipher(make([]byte, shift.BlockSize))
 	if err != nil {
 		t.Errorf("want no error, got %v", err)
 	}
@@ -18,13 +18,13 @@ func TestNewCipher_GivesNoErrorForValidKey(t *testing.T) {
 
 func TestNewCipher_GivesErrKeySizeForInvalidKey(t *testing.T) {
 	t.Parallel()
-	_, err := shiftblock.NewCipher([]byte{})
-	if !errors.Is(err, shiftblock.ErrKeySize) {
-		t.Errorf("want %q, got %q", shiftblock.ErrKeySize, err)
+	_, err := shift.NewCipher([]byte{})
+	if !errors.Is(err, shift.ErrKeySize) {
+		t.Errorf("want %q, got %q", shift.ErrKeySize, err)
 	}
 }
 
-var testKey = bytes.Repeat([]byte{1}, shiftblock.BlockSize)
+var testKey = bytes.Repeat([]byte{1}, shift.BlockSize)
 
 var testcases = []struct {
 	plaintext, ciphertext []byte
@@ -41,7 +41,7 @@ var testcases = []struct {
 
 func TestEncrypt(t *testing.T) {
 	t.Parallel()
-	cipher, err := shiftblock.NewCipher(testKey)
+	cipher, err := shift.NewCipher(testKey)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -60,7 +60,7 @@ func TestEncrypt(t *testing.T) {
 
 func TestDecrypt(t *testing.T) {
 	t.Parallel()
-	cipher, err := shiftblock.NewCipher(testKey)
+	cipher, err := shift.NewCipher(testKey)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -78,11 +78,11 @@ func TestDecrypt(t *testing.T) {
 
 func TestBlockSize(t *testing.T) {
 	t.Parallel()
-	cipher, err := shiftblock.NewCipher(testKey)
+	cipher, err := shift.NewCipher(testKey)
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := shiftblock.BlockSize
+	want := shift.BlockSize
 	got := cipher.BlockSize()
 	if want != got {
 		t.Errorf("want %v, got %v", want, got)

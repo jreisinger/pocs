@@ -2,7 +2,7 @@ package shiftblock_test
 
 import (
 	"bytes"
-	"shiftblock"
+	shift "shift-block"
 	"testing"
 )
 
@@ -37,7 +37,7 @@ func TestPad(t *testing.T) {
 	blockSize := 4
 	for _, tc := range padCases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := shiftblock.Pad(tc.raw, blockSize)
+			got := shift.Pad(tc.raw, blockSize)
 			if !bytes.Equal(tc.padded, got) {
 				t.Errorf("want %v, got %v", tc.padded, got)
 			}
@@ -49,7 +49,7 @@ func TestUnpad(t *testing.T) {
 	t.Parallel()
 	blockSize := 4
 	for _, tc := range padCases {
-		got := shiftblock.Unpad(tc.padded, blockSize)
+		got := shift.Unpad(tc.padded, blockSize)
 		if !bytes.Equal(tc.raw, got) {
 			t.Errorf("want %v, got %v", tc.raw, got)
 		}
@@ -61,7 +61,7 @@ func TestPadWithManyBytes(t *testing.T) {
 	blockSize := 32
 	raw := bytes.Repeat([]byte{0}, 52)
 	padded := append(raw, bytes.Repeat([]byte{12}, 12)...)
-	got := shiftblock.Pad(raw, blockSize)
+	got := shift.Pad(raw, blockSize)
 	t.Logf("got: % 0x\n", got)
 	if !bytes.Equal(padded, got) {
 		t.Errorf("want %v, got %v", padded, got)

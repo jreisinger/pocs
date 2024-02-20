@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"shiftblock"
+	shift "shift-block"
 )
 
 func main() {
@@ -18,12 +18,12 @@ func main() {
 		fmt.Fprintf(os.Stderr, "encipher: %v\n", err)
 		os.Exit(1)
 	}
-	cipher, err := shiftblock.NewCipher(key)
+	cipher, err := shift.NewCipher(key)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "encipher: %v\n", err)
 		os.Exit(1)
 	}
-	enc := shiftblock.NewEncrypter(cipher)
+	enc := shift.NewEncrypter(cipher)
 	plaintext, err := io.ReadAll(os.Stdin)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "encipher: %v\n", err)
@@ -32,7 +32,7 @@ func main() {
 	if *debug {
 		fmt.Printf("raw:\t% x\n", plaintext)
 	}
-	plaintext = shiftblock.Pad(plaintext, enc.BlockSize())
+	plaintext = shift.Pad(plaintext, enc.BlockSize())
 	if *debug {
 		fmt.Printf("padded:\t% x\n", plaintext)
 	}

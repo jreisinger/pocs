@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"shiftblock"
+	shift "shift-block"
 )
 
 func main() {
@@ -17,7 +17,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "decipher: %v\n", err)
 		os.Exit(1)
 	}
-	cipher, err := shiftblock.NewCipher(key)
+	cipher, err := shift.NewCipher(key)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "decipher: %v\n", err)
 		os.Exit(1)
@@ -28,8 +28,8 @@ func main() {
 		os.Exit(1)
 	}
 	plaintext := make([]byte, len(ciphertext))
-	dec := shiftblock.NewDecrypter(cipher)
+	dec := shift.NewDecrypter(cipher)
 	dec.CryptBlocks(plaintext, ciphertext)
-	plaintext = shiftblock.Unpad(plaintext, shiftblock.BlockSize)
+	plaintext = shift.Unpad(plaintext, shift.BlockSize)
 	os.Stdout.Write(plaintext)
 }

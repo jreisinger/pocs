@@ -2,17 +2,17 @@ package shiftblock_test
 
 import (
 	"bytes"
-	"shiftblock"
+	shift "shift-block"
 	"testing"
 )
 
 func TestEncrypterEnciphersBlockAlignedMessage(t *testing.T) {
 	t.Parallel()
-	cipher, err := shiftblock.NewCipher(testKey)
+	cipher, err := shift.NewCipher(testKey)
 	if err != nil {
 		t.Fatal(err)
 	}
-	enc := shiftblock.NewEncrypter(cipher)
+	enc := shift.NewEncrypter(cipher)
 	plaintext := []byte("This message is exactly 32 bytes")
 	want := []byte("Uijt!nfttbhf!jt!fybdumz!43!czuft")
 	got := make([]byte, 32)
@@ -24,12 +24,12 @@ func TestEncrypterEnciphersBlockAlignedMessage(t *testing.T) {
 
 func TestEncrypterCorrectlyReportsCipherBlockSize(t *testing.T) {
 	t.Parallel()
-	cipher, err := shiftblock.NewCipher(testKey)
+	cipher, err := shift.NewCipher(testKey)
 	if err != nil {
 		t.Fatal(err)
 	}
-	enc := shiftblock.NewEncrypter(cipher)
-	want := shiftblock.BlockSize
+	enc := shift.NewEncrypter(cipher)
+	want := shift.BlockSize
 	got := enc.BlockSize()
 	if want != got {
 		t.Errorf("want %d, got %d", want, got)
@@ -38,11 +38,11 @@ func TestEncrypterCorrectlyReportsCipherBlockSize(t *testing.T) {
 
 func TestDecrypterDeciphersBlockAlignedMessage(t *testing.T) {
 	t.Parallel()
-	cipher, err := shiftblock.NewCipher(testKey)
+	cipher, err := shift.NewCipher(testKey)
 	if err != nil {
 		t.Fatal(err)
 	}
-	dec := shiftblock.NewDecrypter(cipher)
+	dec := shift.NewDecrypter(cipher)
 	ciphertext := []byte("Uijt!nfttbhf!jt!fybdumz!43!czuft")
 	want := []byte("This message is exactly 32 bytes")
 	got := make([]byte, 32)
@@ -54,12 +54,12 @@ func TestDecrypterDeciphersBlockAlignedMessage(t *testing.T) {
 
 func TestDecrypterCorrectlyReportsCipherBlockSize(t *testing.T) {
 	t.Parallel()
-	cipher, err := shiftblock.NewCipher(testKey)
+	cipher, err := shift.NewCipher(testKey)
 	if err != nil {
 		t.Fatal(err)
 	}
-	dec := shiftblock.NewDecrypter(cipher)
-	want := shiftblock.BlockSize
+	dec := shift.NewDecrypter(cipher)
+	want := shift.BlockSize
 	got := dec.BlockSize()
 	if want != got {
 		t.Errorf("want %d, got %d", want, got)
