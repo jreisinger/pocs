@@ -1,9 +1,10 @@
 package shiftblock
 
+// Types in this file implement crypo/cipher.BlockMode interface. They extend
+// the capability of Cipher to stream of blocks.
+
 import "crypto/cipher"
 
-// Encrypter implements crypo/cipher.BlockMode. Encrypter extends the capability
-// of Cipher to stream of blocks.
 type Encrypter struct {
 	cipher    cipher.Block
 	blockSize int

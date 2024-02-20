@@ -1,6 +1,6 @@
-Package shiftblock is a block version of the shift (Caesar) cipher. Block ciphers work on chunks of data. The chunk size is called the block size. Stream ciphers operate on data one bit at a time.
+Package shiftblock is a block version of the shift (Caesar) cipher. Block ciphers work on chunks of data (stream ciphers operate on data one bit at a time). The chunk size is called the block size.
 
-In order to work with messages that are not block-aligned, shiftblock always uses a padding. Both the number and the value of padded bytes is equal to the difference from the nearest multiple of block size. If the message is aligned with the block size the number and the value of padded bytes is equal to the block size. In our case the block size is 32 bytes.
+In order to work with messages that are not block-aligned, shiftblock always uses a padding. Both the number and the value of padded bytes is equal to the difference from the nearest multiple of block size. If the message size is aligned with the block size, the number and the value of padded bytes is equal to the block size. In our case the block size is 32 bytes.
 
 ```
 $ export KEY=0101010101010101010101010101010101010101010101010101010101010101
@@ -12,7 +12,7 @@ padded: 54 68 69 73 20 69 73 20 33 32 20 62 79 74 65 73 2c 20 69 6e 63 6c 75 64 
 Uijt!jt!43!czuft-!jodmvejoh!FPG
                                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-# Padding of 1 byte with bytes value 1 (01 in hex).
+# Padding of 1 byte with byte value 1 (01 in hex).
 $ echo "This is 31 long, including EOF" | go run ./cmd/encipher -key $KEY -debug
 raw:    54 68 69 73 20 69 73 20 33 31 20 6c 6f 6e 67 2c 20 69 6e 63 6c 75 64 69 6e 67 20 45 4f 46 0a
 padded: 54 68 69 73 20 69 73 20 33 31 20 6c 6f 6e 67 2c 20 69 6e 63 6c 75 64 69 6e 67 20 45 4f 46 0a 01
