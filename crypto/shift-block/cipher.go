@@ -10,7 +10,7 @@ const BlockSize = 32 // bytes
 
 var ErrKeySize = errors.New("invalid key size")
 
-// Cipher implements crypo/cipher.Block interface.
+// Cipher implements crypto/cipher.Block interface.
 type Cipher struct {
 	key [BlockSize]byte
 }
