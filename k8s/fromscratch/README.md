@@ -13,5 +13,4 @@ docker image push reisinge/fibspin
 
 k create job fibspin --image=reisinge/fibspin -- /fibspin {0..50}
 stern fibspin
-k delete job fibspin
 ```
