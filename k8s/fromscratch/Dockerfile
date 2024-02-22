@@ -1,8 +1,8 @@
 FROM golang:1.22 as build
-WORKDIR /fibspin
-COPY go.mod main.go ./
-RUN CGO_ENABLED=0 go build -o /bin/fibspin
+WORKDIR /src
+COPY go.mod fibspin.go ./
+RUN CGO_ENABLED=0 go build
 
 FROM scratch
-COPY --from=build /bin/fibspin /
+COPY --from=build /src/fibspin /
 ENTRYPOINT ["/fibspin"]
