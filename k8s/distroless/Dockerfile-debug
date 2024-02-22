@@ -3,6 +3,6 @@ WORKDIR /wizards
 COPY . .
 RUN CGO_ENABLED=0 go build -o /bin/wizards
 
-FROM gcr.io/distroless/static-debian12
+FROM gcr.io/distroless/static-debian12:debug
 COPY --from=build /bin/wizards /
 CMD ["/wizards"]

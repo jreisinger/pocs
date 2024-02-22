@@ -5,14 +5,14 @@
 * more secure (smaller attack surface, better signal/noise ratio of scanners)
 
 ```sh
-docker build -t distroless .
-docker run --name distroless -p 8080:8080 -d distroless
+docker build -t wizards .
+docker run --name wizards -p 8080:8080 -d wizards
 curl localhost:8080
-docker rm -f distroless
+docker rm -f wizards
 
-# To debug add :debug tag in the final FROM in Dockerfile.
-docker build -t distroless-debug .
-docker run -it --entrypoint=sh distroless-debug
-/ # /app
+# To interactively debug.
+docker build -t wizards-debug -f Dockerfile-debug .
+docker run -it --entrypoint=sh wizards-debug
+/ # /wizards
 2024/01/30 12:24:00 starting a web server on port 8080
 ```
