@@ -18,6 +18,8 @@ func Decipher(ciphertext []byte, key byte) []byte {
 	return Encipher(ciphertext, -key)
 }
 
+// Crack tries to guess the key used to produce the ciphertext. It needs a crib,
+// i.e. a few bytes from the beginning of the plaintext.
 func Crack(ciphertext, crib []byte) (key byte, err error) {
 	for guess := 0; guess < 256; guess++ {
 		result := Decipher(ciphertext[:len(crib)], byte(guess))

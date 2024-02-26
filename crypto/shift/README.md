@@ -1,4 +1,4 @@
-Simple shift (Caesar) cipher. Taken from https://github.com/bitfield/eg-crypto/.
+Simple shift (Caesar) cipher. Adapted from https://github.com/bitfield/eg-crypto/.
 
 ```
 echo hello world | go run ./cmd/encipher -key 10 | go run ./cmd/decipher -key 10
