@@ -19,5 +19,5 @@ spec:
         name: wizards
         resources:
           limits:
-            cpu: "250m"
-            memory: "128Mi"
+            cpu: "250m"      # 250 millicpus
+            memory: "128Mi"  # 128 mebibytes
