@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wizards
+  name: wizards
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: wizards
+  template:
+    metadata:
+      labels:
+        app: wizards
+    spec:
+      containers:
+      - image: reisinge/wizards
+        name: wizards
+        resources:
+          limits:
+            cpu: "250m"
+            memory: "128Mi"
