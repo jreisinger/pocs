@@ -21,3 +21,16 @@ spec:
           limits:
             cpu: "250m"
             memory: "128Mi"
+        livenessProbe:  # k8s restarts pod if not ok
+          httpGet:      # ok if 2xx or 3xx
+            path: /     # / is default, /healthz is common practice
+            port: 8080
+          initialDelaySeconds: 3  # how soon k8s starts checking; startupProbe is related
+          periodSeconds: 3        # how often is the check done
+          failureThreshold: 2     # how many times can the probe fail
+        readinessProbe: # k8s removes pod from Service if not ok
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
