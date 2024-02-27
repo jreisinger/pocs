@@ -14,7 +14,7 @@ func main() {
 	flag.Parse()
 	plaintext, err := io.ReadAll(os.Stdin)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintf(os.Stderr, "encipher: %v\n", err)
 		os.Exit(1)
 	}
 	ciphertext := shift.Encipher(plaintext, byte(*key))
