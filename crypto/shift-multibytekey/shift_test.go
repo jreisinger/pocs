@@ -2,7 +2,6 @@ package shift_test
 
 import (
 	"bytes"
-	"fmt"
 	"shift-multibytekey"
 	"testing"
 )
@@ -35,43 +34,31 @@ var cases = []struct {
 }
 
 func TestEncipher(t *testing.T) {
-	t.Parallel()
 	for _, tc := range cases {
-		name := fmt.Sprintf("%s + %d = %s", tc.plaintext, tc.key, tc.ciphertext)
-		t.Run(name, func(t *testing.T) {
-			got := shift.Encipher(tc.plaintext, tc.key)
-			if !bytes.Equal(tc.ciphertext, got) {
-				t.Errorf("want %q, got %q", tc.ciphertext, got)
-			}
-		})
+		got := shift.Encipher(tc.plaintext, tc.key)
+		if !bytes.Equal(tc.ciphertext, got) {
+			t.Errorf("want %q, got %q", tc.ciphertext, got)
+		}
 	}
 }
 
 func TestDecipher(t *testing.T) {
-	t.Parallel()
 	for _, tc := range cases {
-		name := fmt.Sprintf("%s - %d = %s", tc.ciphertext, tc.key, tc.plaintext)
-		t.Run(name, func(t *testing.T) {
-			got := shift.Decipher(tc.ciphertext, tc.key)
-			if !bytes.Equal(tc.plaintext, got) {
-				t.Errorf("want %q, got %q", tc.plaintext, got)
-			}
-		})
+		got := shift.Decipher(tc.ciphertext, tc.key)
+		if !bytes.Equal(tc.plaintext, got) {
+			t.Errorf("want %q, got %q", tc.plaintext, got)
+		}
 	}
 }
 
 func TestCrack(t *testing.T) {
-	t.Parallel()
 	for _, tc := range cases {
-		name := fmt.Sprintf("%s + %d = %s", tc.plaintext, tc.key, tc.ciphertext)
-		t.Run(name, func(t *testing.T) {
-			got, err := shift.Crack(tc.ciphertext, tc.plaintext[:3])
-			if err != nil {
-				t.Fatal(err)
-			}
-			if !bytes.Equal(tc.key, got) {
-				t.Fatalf("want %d, got %d", tc.key, got)
-			}
-		})
+		got, err := shift.Crack(tc.ciphertext, tc.plaintext[:3])
+		if err != nil {
+			t.Fatal(err)
+		}
+		if !bytes.Equal(tc.key, got) {
+			t.Fatalf("want %d, got %d", tc.key, got)
+		}
 	}
 }
