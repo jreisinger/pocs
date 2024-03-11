@@ -8,7 +8,7 @@ use (
 	./crypto/unsafehash
 	./go/logging
 	./k8s/fromscratch
-	./k8s/wizards
+	./k8s/simpleweb
 	./lookup
 	./ratelim
 	./shannon
