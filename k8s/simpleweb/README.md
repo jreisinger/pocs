@@ -1,7 +1,4 @@
-Wizards demonstrates a simple web site that is:
-
-- distributed as [distroless](https://github.com/GoogleContainerTools/distroless) container
-- deployable to Kubernetes via Helm
+Website demonstrates a simple web site that is distributed as a [distroless](https://github.com/GoogleContainerTools/distroless) container image and deployed to Kubernetes via Helm.
 
 Build and run locally:
 

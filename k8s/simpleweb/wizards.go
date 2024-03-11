@@ -14,7 +14,7 @@ for you are crunchy and good with ketchup.`
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, msg)
+		fmt.Fprintln(w, msg)
 	})
 	log.Println("starting a web server on port " + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
