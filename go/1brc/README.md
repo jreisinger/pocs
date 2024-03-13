@@ -25,7 +25,7 @@ To process the file:
 
 ```
 $ go build
-$ time ./1brc ~/github.com/gunnarmorling/1brc/measurements.txt
+$ time ./1brc [-p] ~/github.com/gunnarmorling/1brc/measurements.txt
 ```
 
 Based on https://benhoyt.com/writings/go-1brc/.
