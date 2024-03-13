@@ -1,4 +1,4 @@
-1BRC (The One Billion Rows Challenge) wants you to process a 13GB file as fast as possible. The file looks like this:
+1BRC (The One Billion Rows Challenge) wants you to process a 13GB file of weather station names and temperatures as fast as possible. For each weather station, print out the minimum, mean, and maximum. The file looks like this:
 
 ```
 $ head measurements.txt 
