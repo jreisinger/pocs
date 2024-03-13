@@ -6,6 +6,7 @@ use (
 	./crypto/shift-multibytekey
 	./crypto/tls-http
 	./crypto/unsafehash
+	./go/1brc
 	./go/logging
 	./k8s/fromscratch
 	./k8s/simpleweb
