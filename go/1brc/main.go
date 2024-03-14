@@ -39,7 +39,7 @@ func main() {
 
 type stats struct {
 	min, max, sum float64
-	count         int64
+	count         int64 // mean (or average) = sum / count
 }
 
 // simple is a simple and idiomatic Go code to process the measurements file.
@@ -206,10 +206,10 @@ func parallel(filename string, output io.Writer) error {
 	return nil
 }
 
-func splitFile(inputPath string, numParts int) ([]part, error) {
+func splitFile(file string, numParts int) ([]part, error) {
 	const maxLineLength = 100
 
-	f, err := os.Open(inputPath)
+	f, err := os.Open(file)
 	if err != nil {
 		return nil, err
 	}
