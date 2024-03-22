@@ -4,9 +4,9 @@ Build and run locally:
 
 ```
 docker build -t wizards .
-docker run --name wizards -p 8080:8080 -d wizards
+docker run --name wizards -p 1212:8080 -d wizards
 
-curl localhost:8080
+curl localhost:1212
 docker rm -f wizards
 ```
 

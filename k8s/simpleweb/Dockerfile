@@ -5,4 +5,5 @@ RUN CGO_ENABLED=0 go build -o /bin/wizards
 
 FROM gcr.io/distroless/static-debian12
 COPY --from=build /bin/wizards /
+USER 1001
 CMD ["/wizards"]
