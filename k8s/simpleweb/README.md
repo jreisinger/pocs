@@ -1,4 +1,4 @@
-Website demonstrates a simple web site that is distributed as a [distroless](https://github.com/GoogleContainerTools/distroless) container image and deployed to Kubernetes via Helm.
+Simpleweb demonstrates a simple web site that is distributed as a [distroless](https://github.com/GoogleContainerTools/distroless) container image and deployed to Kubernetes via Helm.
 
 Build and run locally:
 
