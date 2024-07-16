@@ -6,7 +6,6 @@ use (
 	./crypto/shift-multibytekey
 	./crypto/tls-http
 	./crypto/unsafehash
-	./devops/pipeline
 	./go/1brc
 	./go/logging
 	./k8s/fromscratch
@@ -14,6 +13,7 @@ use (
 	./lookup
 	./ratelim
 	./shannon
+	./unix/pipeline
 	./web/download
 	./web/jwt
 	./web/restful-api-example
