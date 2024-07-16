@@ -1,4 +1,4 @@
-go 1.22.0
+go 1.22.4
 
 use (
 	./crypto/shift
@@ -6,6 +6,7 @@ use (
 	./crypto/shift-multibytekey
 	./crypto/tls-http
 	./crypto/unsafehash
+	./devops/pipeline
 	./go/1brc
 	./go/logging
 	./k8s/fromscratch
