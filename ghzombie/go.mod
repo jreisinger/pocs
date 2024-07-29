@@ -1,3 +1,3 @@
 module github.com/jreisinger/pocs/ghzombie
 
-go 1.22.5
+go 1.22.4
