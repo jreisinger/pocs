@@ -104,7 +104,11 @@ func main() {
 		}
 	}
 
-	log.Printf("found %d fork events and %d push events", len(forkEvents), len(pushEvents))
+	log.Printf("found %d fork events (and %d push events)", len(forkEvents), len(pushEvents))
+
+	if len(forkEvents) <= 0 {
+		os.Exit(0)
+	}
 
 	all := make(chan ForkEvent)
 	deleted := make(chan ForkEvent)

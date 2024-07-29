@@ -3,7 +3,7 @@ Ghzombie finds commits from deleted GitHub repositories. It's based on the idea 
 ```
 $ wget https://data.gharchive.org/2024-07-25-{15..17}.json.gz # events from 3pm to 5pm UTC
 $ gunzip *.gz
-$ go run github.com/jreisinger/pocs/ghzombie@latest 2024-07-25-{15..17}.json 2> /dev/null
+$ go run main.go 2024-07-25-{15..17}.json 2> /dev/null
 {
   "Deleted": "https://github.com/njms-lover/HANSAMAL-MD",
   "Commits": [
