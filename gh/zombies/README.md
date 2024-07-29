@@ -1,4 +1,4 @@
-Ghzombie finds commits from deleted GitHub repositories. It's based on the idea about accessing deleted fork data from [this article](https://trufflesecurity.com/blog/anyone-can-access-deleted-and-private-repo-data-github).
+Ghzombies finds commits from deleted GitHub repositories. It's based on the idea about accessing deleted fork data from [this article](https://trufflesecurity.com/blog/anyone-can-access-deleted-and-private-repo-data-github).
 
 ```
 $ wget https://data.gharchive.org/2024-07-25-{15..17}.json.gz # events from 3pm to 5pm UTC
