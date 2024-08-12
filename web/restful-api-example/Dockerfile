@@ -2,7 +2,7 @@
 
 # Use official Go image as the base image. It contains
 # environment for building Go programs.
-FROM golang:1.17-alpine AS build
+FROM golang:1.22-alpine AS build
 
 # Create a directory inside the image. Docker will use this directory as the
 # default desitnation for all subsequent commands (you can use relative paths).
