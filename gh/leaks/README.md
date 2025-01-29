@@ -12,8 +12,8 @@ Alternatively you can use something like https://github.com/WillAbides/gharchive
 gharchive-client 2024-07-25 --type=PublicEvent | go run main.go
 ```
 
-Analysing leaks:
+Leaks statistics:
 
 ```
-jq -r '.Leaks[] | .RuleID' < ghleaks.json  | sort | uniq -c
+jq -r '.Leaks[] | .RuleID' < ghleaks.json  | sort | uniq -c | sort -nr
 ```
