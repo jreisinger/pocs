@@ -5,10 +5,10 @@ certs:
 ```
 # Create CA private key and certificate. Plus generate private key and a signed
 # certificate for localhost.
-minica -ca-key cakey.key -ca-cert cacert.crt -domains localhost
+minica -ca-key ca.key -ca-cert ca.crt -domains localhost
 
 # You can use github.com/pete911/certinfo to check the generated certificates.
-certinfo cacert.crt
+certinfo ca.crt
 certinfo localhost/cert.pem
 ```
 
@@ -22,5 +22,5 @@ client:
 
 ```
 curl https://localhost:8080 # observe the client and server error
-curl https://localhost:8080 --cacert cacert.crt
+curl https://localhost:8080 --cacert ca.crt
 ```
