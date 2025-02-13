@@ -12,7 +12,7 @@ import (
 
 var (
 	addr   = "localhost:53000"
-	domain = "dummy.com."
+	domain = "ZG5ZC2VJDXJPDHKK.COM."
 	ipaddr = "1.2.3.4"
 )
 
@@ -54,7 +54,7 @@ func handleARecord(msg *dns.Msg, q dns.Question) {
 		if err != nil {
 			log.Printf("failed to decode base64 string: %v", err)
 		}
-		fmt.Println("received:", string(decoded))
+		fmt.Println("decoded info:", string(decoded))
 	}
 
 	// Answer the query
