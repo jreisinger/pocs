@@ -28,8 +28,9 @@ docker image push reisinge/wizards
 Deploy to Kubernetes cluster:
 
 ```
-helm template . | kubectl apply -f -
+helm template ./helm | kubectl apply -f -
 
 kubectl run tmp --image=busybox --rm -it --restart=Never -- wget wizards:8080 -qO-
-helm template . | kubectl delete -f -
+
+helm template ./helm | kubectl delete -f -
 ```
