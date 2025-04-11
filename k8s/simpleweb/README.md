@@ -28,7 +28,7 @@ docker image push reisinge/wizards
 Deploy to Kubernetes cluster:
 
 ```
-# Just a Pod.
+# Just bare Pod.
 kubectl run wizards --image=reisinge/wizards
 
 kubectl debug -it wizards --image=busybox:1.28 --target=wizards
