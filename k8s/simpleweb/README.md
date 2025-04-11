@@ -28,6 +28,22 @@ docker image push reisinge/wizards
 Deploy to Kubernetes cluster:
 
 ```
+# Just a Pod.
+kubectl run wizards --image=reisinge/wizards
+
+kubectl debug -it wizards --image=busybox:1.28 --target=wizards
+/ # ps
+/ # netstat -tlpna
+/ # wget localhost:8080 -qO-
+
+kubectl port-forward pod/wizards 8080:8080
+curl localhost:8080
+
+kubectl delete pod wizards
+```
+
+```
+# Deployment and Service templated by Helm.
 helm template ./helm | kubectl apply -f -
 
 kubectl run tmp --image=busybox --rm -it --restart=Never -- wget wizards:8080 -qO-
