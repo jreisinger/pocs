@@ -1,0 +1,1 @@
+Count is a sample CLI tool somehow similar to `wc`. It's taken from chapters 2 to 4 of "The Power of Go - Tools" (2025) book.

@@ -1,0 +1,7 @@
+stdin three_words.txt
+exec words
+stdout '^3\n$'
+
+-- three_words.txt --
+one two
+three
