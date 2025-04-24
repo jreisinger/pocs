@@ -1,0 +1,1 @@
+Writer is a an example how to write files in Go. It includes comprehensive tests. It's taken from chapter 5 of "The Power of Go - Tools" (2025) book.
