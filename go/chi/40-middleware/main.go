@@ -20,7 +20,7 @@ func main() {
 // HTTP middleware setting a value on the request context
 func MyMiddlerware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// create new context from request context and assign key user to value 123
+		// create new context from request context and assign key "user" to value "123"
 		ctx := context.WithValue(r.Context(), "user", "123")
 
 		// call the next handler in the chain, passing the response writer and
@@ -33,6 +33,7 @@ func MyMiddlerware(next http.Handler) http.Handler {
 	})
 }
 
+// We can now take this value from the context in our Handlers like this
 func MyHandler(w http.ResponseWriter, r *http.Request) {
 	user := r.Context().Value("user").(string)
 	w.Write([]byte(fmt.Sprintf("hi %s", user)))
