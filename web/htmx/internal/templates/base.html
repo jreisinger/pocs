@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Web App</title>
+    <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Go Web App</h1>
+    </header>
+    <main>
+        <div id="content">
+            <p>This is the home page content.</p>
+            <button hx-get="/dynamic-content" hx-target="#content" hx-swap="innerHTML">Load More Content</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Go Web App</p>
+    </footer>
+</body>
+</html>
