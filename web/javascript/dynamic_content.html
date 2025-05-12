@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Change Text</title>
+</head>
+<body>
+  <p id="demo">This is the original text.</p>
+  <button onclick="changeText()">Change Text</button>
+
+  <script>
+    function changeText() {
+      // document.getElementById() grabs an element by its ID 
+      // .innerText lets you changes the content of that element
+      document.getElementById("demo").innerText = "Text changed!";
+    }
+  </script>
+</body>
+</html>

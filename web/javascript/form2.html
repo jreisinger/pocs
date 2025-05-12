@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+</head>
+<body>
+  <h2>Enter your name</h2>
+
+  <input type="text" id="nameInput" placeholder="Your name here" />
+  <button onclick="greetUser()">Submit</button>
+
+  <p id="output" style="color: red;"></p>
+
+  <script>
+    function greetUser() {
+      let name = document.getElementById("nameInput").value.trim();
+      let output = document.getElementById("output");
+
+      if (name === "") { // validate the input before greeting
+        output.innerText = "Please enter your name.";
+        output.style.color = "red";
+      } else {
+        output.innerText = "Hello, " + name + "!";
+        output.style.color = "green";
+      }
+    }
+  </script>
+</body>
+</html>

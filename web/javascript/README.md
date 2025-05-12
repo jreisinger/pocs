@@ -1,0 +1,6 @@
+- a prog. lang. that runs in web browsers
+- can also run on servers (via Node.js)
+- it makes websites interactive, e.g.
+    - buttons respond when clicked
+    - forms that validate input
+    - dynamic content updated
