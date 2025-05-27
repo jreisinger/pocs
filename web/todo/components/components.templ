@@ -1,0 +1,45 @@
+package components
+
+import (
+    "todo"
+    "fmt"
+)
+
+templ Base() {
+    <html>
+        <head>
+            <meta charset="UTF-8" />
+            <title>Todo App</title>
+            <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+            <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+            >
+        </head>
+        <body>
+            { children... }
+        </body>
+    </html>
+}
+
+templ List(todos []todo.Todo) {
+    @Base() {
+        <ul>
+            for _, todo := range todos {
+                <li>
+                    <input 
+                        type="checkbox" 
+                        id="task"
+                        hx-post={ fmt.Sprintf("/toggle-done?id=%d", todo.ID) }
+                        hx-swap="innerHTML"
+                        hx-trigger="change"
+                        if todo.Done {
+                            checked
+                        }
+                    />
+                    <span class="todo-text">{ todo.Text }</span>
+                </li>
+            }
+        </ul>
+    }
+}
