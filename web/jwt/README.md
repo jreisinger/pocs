@@ -9,26 +9,19 @@ Although JWTs can be encrypted, this is about signing, i.e. verifying the integr
 
 JWT structure:
 
-* header - contains Base64Url-encoded token type (JWT) and signing algorithm (HMAC, SHA256, RSA)
-* payload - contains Base64Url-encoded claims, i.e. statements about an entity ([registered](https://tools.ietf.org/html/rfc7519#section-4.1), public, private)
-* signature - created by signing encoded header and payload, e.g. using HMAC algorithm and a secret:
-
-```
-HMACSHA256(
-  base64UrlEncode(header) + "." +
-  base64UrlEncode(payload),
-  secret)
-```
+* header - contains Base64Url-encoded token type (JWT) and signing [algorithm](https://datatracker.ietf.org/doc/html/rfc7518#section-3.1) (HMAC/RSA/ECDSA + SHA)
+* payload - contains Base64Url-encoded claims, i.e. statements about an entity (claims can be [registered](https://tools.ietf.org/html/rfc7519#section-4.1), public, private)
+* signature - created by signing encoded header and payload, e.g. using HMAC+SHA256 algorithm and a secret: `HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), secret )`
 
 Run
 
-```
+```sh
 go run api.go
 ```
 
 Play
 
-```
+```sh
 # 400: no token in Authorization header
 curl -v http://localhost:8080/protected
 

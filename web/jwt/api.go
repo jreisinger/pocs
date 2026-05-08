@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"strings"
 
@@ -12,7 +13,7 @@ func main() {
 	router := gin.Default()
 	router.GET("/protected", protectedMessage)
 
-	router.Run("localhost:8080")
+	log.Fatal(router.Run("localhost:8080"))
 }
 
 type responseJSON struct {
@@ -30,10 +31,11 @@ func protectedMessage(c *gin.Context) {
 
 	token, err := jwt.Parse(
 		getToken(authorizationHeader),
-		func(token *jwt.Token) (interface{}, error) {
+		func(token *jwt.Token) (any, error) {
 			return Key, nil
 		},
 		jwt.WithValidMethods(ValidAlgMethods),
+		// jwt.WithExpirationRequired(), // should be used in prod
 	)
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, responseJSON{Message: err.Error()})
@@ -59,17 +61,17 @@ func protectedMessage(c *gin.Context) {
 }
 
 func getToken(authorizationHeader string) string {
-	if authorizationHeader == "" {
-		return ""
-	}
-
-	var token string
 	fields := strings.Fields(authorizationHeader)
-	if len(fields) == 1 {
-		token = fields[0] // <token>
-	} else {
-		token = fields[1] // Bearer <token> [...]
+
+	// Bearer <token>
+	if len(fields) == 2 && strings.EqualFold(fields[0], "Bearer") {
+		return fields[1]
 	}
 
-	return token
+	// <token>
+	if len(fields) == 1 {
+		return fields[0]
+	}
+
+	return ""
 }
