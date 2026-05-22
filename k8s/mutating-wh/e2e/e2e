@@ -1,0 +1,57 @@
+#!/bin/bash
+dir=$(dirname "$0")
+
+echo "*** create cluster ***"
+kind create cluster --wait 5m --name mutating-wh-test
+
+if [ "$(kubectl config current-context)" != "kind-mutating-wh-test" ]
+then
+  echo "kubectl context is not set to kind-mutating-wh-test"
+  exit 1
+fi
+
+echo "*** install cert-manager ***"
+# kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.13.1/cert-manager.yaml
+helm repo add jetstack https://charts.jetstack.io --force-update
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.15.0 \
+  --set crds.enabled=true \
+  --wait
+
+echo "*** build and load mutating-wh docker image ***"
+docker build -t mutating-wh:test "$dir"/..
+kind load docker-image mutating-wh:test --name mutating-wh-test
+
+echo "*** deploy mutating-wh chart ***"
+helm install mutating-wh "$dir"/../charts/mutating-wh \
+  --set image=mutating-wh:test \
+  --wait
+
+EXIT_CODE=0
+
+echo "*** create pod requesting excessive memory (> 32Mi) and check it has been mutated ***"
+helm install nginx-64 ./e2e/nginx --set memory=64
+MEM_REQ=$(kubectl get pod nginx-64 -o=jsonpath='{.spec.containers[0].resources.requests.memory}')
+if [ "$MEM_REQ" = "32Mi" ]; then
+  echo "OK"
+else
+  echo "FAIL"
+  EXIT_CODE=$((EXIT_CODE + 1))
+fi
+
+echo "*** create pod that does not request excessive memory (< 32Mi) and check it hasn't been mutated ***"
+helm install nginx-16 ./e2e/nginx --set memory=16
+MEM_REQ=$(kubectl get pod nginx-16 -o=jsonpath='{.spec.containers[0].resources.requests.memory}')
+if [ "$MEM_REQ" = "16Mi" ]; then
+  echo "OK"
+else
+  echo "FAIL"
+  EXIT_CODE=$((EXIT_CODE + 1))
+fi
+
+echo "*** clean up ***"
+kind delete cluster --name mutating-wh-test
+exit "$EXIT_CODE"
