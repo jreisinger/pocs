@@ -28,6 +28,12 @@ spec:
       - name: {{ .Chart.Name }}
         image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
+        readinessProbe:
+          tcpSocket:
+            port: 8443
+          initialDelaySeconds: 1
+          periodSeconds: 1
+          successThreshold: 3
         env:
         - name: MWH_TLS_CRT
           valueFrom:
