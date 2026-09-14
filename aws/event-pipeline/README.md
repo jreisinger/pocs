@@ -20,6 +20,24 @@ flowchart LR
 - **DynamoDB Table** — stores processed events.
 - **Dead-Letter Queue** — captures events the Lambda fails to process.
 
+## Ordering
+
+EventBridge does not guarantee event ordering — events can be delivered to
+the Lambda out of order, even from the same producer. If ordering matters,
+include a sequence number or timestamp in the event `Detail` and handle
+reordering in the consumer.
+
+## EventBridge vs SNS vs SQS
+
+| | EventBridge | SNS | SQS |
+|---|---|---|---|
+| Model | Event bus (content-based routing) | Pub/sub (topic-based) | Message queue |
+| Routing | Rules match on event content | Fixed topic, optional filter policy | N/A — single queue, polled by consumers |
+| Fan-out | Yes, to multiple targets per rule | Yes, to multiple subscribers per topic | No — one message consumed once |
+| Ordering | Not guaranteed | Not guaranteed (FIFO topics excepted) | Not guaranteed (FIFO queues excepted) |
+| Retention/replay | No (unless Archive/Replay enabled) | No | Yes, until consumed (up to 14 days) |
+| Typical use case | Routing events between decoupled services/apps based on content | Fanning out a notification to many subscribers (email, SMS, Lambda, SQS) | Buffering/decoupling work between a producer and a single consumer |
+
 ## Project Structure
 
 ```
