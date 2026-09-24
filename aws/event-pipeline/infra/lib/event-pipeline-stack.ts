@@ -19,6 +19,12 @@ export class EventPipelineStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
+    const totalsTable = new dynamodb.Table(this, 'CustomerTotalsTable', {
+      partitionKey: { name: 'customerId', type: dynamodb.AttributeType.STRING },
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+    });
+
     const bus = new events.EventBus(this, 'EventBus', {
       eventBusName: 'event-pipeline-bus',
     });
@@ -34,17 +40,19 @@ export class EventPipelineStack extends cdk.Stack {
       runtime: lambda.Runtime.PROVIDED_AL2023,
       environment: {
         TABLE_NAME: table.tableName,
+        TOTALS_TABLE_NAME: totalsTable.tableName,
       },
       deadLetterQueue,
       logGroup,
     });
 
     table.grantWriteData(processorFn);
+    totalsTable.grantWriteData(processorFn);
 
-    new events.Rule(this, 'ProcessAllEventsRule', {
+    new events.Rule(this, 'ProcessOrdersRule', {
       eventBus: bus,
       eventPattern: {
-        detailType: events.Match.exists(),
+        detailType: ['OrderPlaced'],
       },
       targets: [
         new targets.LambdaFunction(processorFn, {

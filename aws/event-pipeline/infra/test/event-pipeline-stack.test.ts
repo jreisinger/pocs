@@ -15,6 +15,14 @@ test('creates event bus, DynamoDB table, and Lambda processor', () => {
     KeySchema: [{ AttributeName: 'eventId', KeyType: 'HASH' }],
   });
 
+  template.hasResourceProperties('AWS::DynamoDB::Table', {
+    KeySchema: [{ AttributeName: 'customerId', KeyType: 'HASH' }],
+  });
+
+  template.hasResourceProperties('AWS::Events::Rule', {
+    EventPattern: { 'detail-type': ['OrderPlaced'] },
+  });
+
   template.resourceCountIs('AWS::Lambda::Function', 1);
   template.resourceCountIs('AWS::SQS::Queue', 1);
 });
