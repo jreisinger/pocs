@@ -1,0 +1,19 @@
+# One Nokia SR Linux switch with two Linux hosts plugged into it.
+#   h1:eth1 ── e1-1 [sw] e1-2 ── h2:eth1
+name: l2l3
+
+topology:
+  nodes:
+    sw:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux:26.7.1
+    h1:
+      kind: linux
+      image: alpine:latest
+    h2:
+      kind: linux
+      image: alpine:latest
+
+  links:
+    - endpoints: ["h1:eth1", "sw:e1-1"]
+    - endpoints: ["h2:eth1", "sw:e1-2"]
