@@ -1,6 +1,6 @@
 # containerlab
 
-Couple of exercise to get started with containerlab.dev
+Couple of exercises to get started with containerlab.dev
 
 ## Setup
 
