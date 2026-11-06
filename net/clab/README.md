@@ -56,7 +56,7 @@ What to notice:
 - `ip neigh` on h1 shows h2’s own MAC address. h1 talks to h2 directly, and the switch is invisible.
 - On the switch, `show network-instance lan bridge-table mac-table all` lists both hosts’ MACs. That table is all an L2 switch knows: “this MAC is behind this port.”
 
-# Exercise 2: L2 can’t cross subnets
+## Exercise 2: L2 can’t cross subnets
 
 Move the hosts into different subnets:
 
